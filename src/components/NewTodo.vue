@@ -1,4 +1,8 @@
 <script setup>
+
+
+
+
 import { ref } from "vue";
 import AuthService from "../services/auth-service";
 import TodosService from "../services/todos-service";
@@ -32,10 +36,7 @@ const createTodo = async () => {
     const newTodo = await todosService.createTodo(todo);
     console.log(newTodo);
    
-    
-todo.value = todo;
-const onModalClose = () => {
-};
+
   
 }
 
@@ -43,8 +44,15 @@ const onModalClose = () => {
 
 const onToggleCreateModal = () => {
     console.log(isCreateModalOpen.value);
+
     isCreateModalOpen.value = !isCreateModalOpen.value;
+
+      
 };
+
+// const onModalClose = () => {
+//   todo.value = !null;
+// };
 
 </script>
 
@@ -95,6 +103,7 @@ const onToggleCreateModal = () => {
               type="button"
               class="btn btn-success mt-4 w-100"
               @click="createTodo">
+         
               Create Todo
             </button>
           </form>

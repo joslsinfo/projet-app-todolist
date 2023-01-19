@@ -94,6 +94,7 @@ const onModalClose = () => {
 const onToggleCreateModal = () => {
     console.log("Result:", isCreateModalOpen.value);
     isCreateModalOpen.value = !isCreateModalOpen.value;
+  
 };
 
 
@@ -120,7 +121,7 @@ onMounted(getTodos);
                 <div class="col">
                     <p class="h3 text-success fw-bold"> Todos Task Manager
                         <button  class="btn btn-success btn-sm" @click="onToggleCreateModal"><i
-                                class="fa fa-plus-circle"></i>Create</button>
+                                class="fa fa-plus-circle me-1"></i>Create</button>
                     </p>
                 </div>
             </div>
