@@ -1,8 +1,5 @@
 <script setup>
 
-
-
-
 import { ref } from "vue";
 import AuthService from "../services/auth-service";
 import TodosService from "../services/todos-service";

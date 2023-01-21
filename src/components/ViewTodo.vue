@@ -16,13 +16,13 @@ const isLoading = ref(false)
 
 const getTodo = async () => { 
     todo.value = await todosService.getTodo(id.value)
-    // console.log("Get one todo :", todo.value)
+ 
 }
 
 const toggleTodoStatus = async () => {
     const time = new Date()
     todo.value = await todosService.updateTodo(id.value, {done: !todo.value.data.done, doneAt: time})
-    // console.log("Status response and id:",todo.value.data.done, id.value)
+
  
 }
 

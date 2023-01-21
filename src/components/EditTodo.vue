@@ -20,7 +20,7 @@ const updatedAt = ref();
 
 const getTodo = async () => { 
     const todo = await todosService.getTodo(route.params._id)
-    // console.log("Get one todo by id to modify below:",todo.data);
+   
     title.value = todo.data.title,
     content.value = todo.data.content,
     timeLimit.value = todo.data.timeLimit,

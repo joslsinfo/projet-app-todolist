@@ -3,13 +3,12 @@ import { ref, onMounted, watch } from "vue";
 import TodosService from "../services/todos-service";
 import Modal from "./Modal.vue";
 import NewTodo from "./NewTodo.vue";
-// import dayjs from 'dayjs'
+
 
 const todosService = new TodosService();
 
 
-// const c = dayjs();
-// console.log("Format de date:", c.format('DD-MM-YYYY'))
+
 
 const todo = ref(null)
 const todos = ref([])
@@ -25,21 +24,6 @@ const getTodos = async () => {
     console.log(todos.value);
     isLoading.value = ref(false)
 };
-
-
-// computed = {
-//     formatDate() {
-//         return date => {
-//             return dayjs(date).format('MMMM DD, YYYY')
-//         }
-//     }
-// }
-
-// const formatDate = ref(date => {
-
-//     return dayjs(date).format('MMMM DD, YYYY')
-// })
-// console.log("Format de date:", formatDate)
 
 
 
