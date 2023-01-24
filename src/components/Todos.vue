@@ -104,7 +104,7 @@ onMounted(getTodos);
             <div class="row">
                 <div class="col">
                     <p class="h3 text-success fw-bold"> Todos Task Manager
-                        <button  class="btn btn-success btn-sm" @click="onToggleCreateModal"><i
+                        <button type="button" class="btn btn-success btn-sm" @click="onToggleCreateModal"><i
                                 class="fa fa-plus-circle me-1"></i>Create</button>
                     </p>
                 </div>
@@ -143,7 +143,8 @@ onMounted(getTodos);
         
         </div>
     </div>
-
+    
+    
     <Modal :isOpen="isCreateModalOpen" :toggleModal="onToggleCreateModal">
         <NewTodo />
     </Modal>
