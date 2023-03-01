@@ -1,4 +1,5 @@
 <script setup>
+const emits = defineEmits(['closeModal']);
 defineProps({
   isOpen: Boolean,
   toggleModal: Function,
@@ -13,7 +14,7 @@ defineProps({
       <div class="container"></div>
       <div class="background" @click="toggleModal"></div>
       <div class="not-a-modal container">
-        <button class="close btn btn-dark ms-2" @click="toggleModal">X</button>
+        <button class="close btn btn-dark ms-2" @click="$emit('closeModal')">X</button>
         <section class="modal__content">
           <slot ></slot>
         </section>

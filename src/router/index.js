@@ -8,6 +8,10 @@ import ViewTodo from '../components/ViewTodo.vue'
 import NewTodo from '../components/NewTodo.vue'
 
 
+
+
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -36,12 +40,12 @@ const router = createRouter({
     },
     
     {
-      path: '/todos/edit/:_id',
+      path: '/todos/edit/:id',
       name: 'EditTodo',
       component: EditTodo
     },
     {
-      path: '/todos/view/:_id',
+      path: '/todos/view/:id',
       name: 'ViewTodo',
       component: ViewTodo
     },
@@ -49,7 +53,9 @@ const router = createRouter({
   ]
 })
 
-const authService = new AuthService()
+
+const authServiceInstance = new AuthService()
+console.log("Tester", authServiceInstance )
 
 router.beforeEach(async (to) => {
   const routes = [
@@ -58,10 +64,12 @@ router.beforeEach(async (to) => {
   ]
 
   if (routes.every(route => route.name !== to.name)) {
-    if (!(await authService.authenticate())) {
+    if (!(await authServiceInstance.authenticate())) {
       return { name: 'login' };
     }
   }
+
+  
 });
 
 export default router

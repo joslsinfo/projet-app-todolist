@@ -2,11 +2,14 @@
 import AuthService from '../services/auth-service';
 import { useRouter } from "vue-router";
 
-const authService = new AuthService();
+
+const authServiceInstance =  AuthService.getInstance();
+
 const router = useRouter();
 
 const logout = async () => {
-    authService.logout();
+
+    authServiceInstance.logout();
     router.push({ name: 'login'});
 };
 

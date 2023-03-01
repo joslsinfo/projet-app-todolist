@@ -2,7 +2,8 @@
     import { ref } from "vue";
     import { useRouter } from "vue-router";
     import AuthService from "../services/auth-service";
-    const authService = new AuthService();
+
+    const authServiceInstance  = AuthService.getInstance();
 
     const email = ref("");
     const password = ref("");
@@ -10,7 +11,7 @@
     const router = useRouter();
 
     const login = async () => {
-        const user = await authService.login(email.value, password.value);
+        const user = await authServiceInstance.login(email.value, password.value);
         // console.log(user);
         if(user.success) {
             router.push({ name: "home"});

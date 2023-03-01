@@ -4,10 +4,15 @@ import {ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useRoute } from 'vue-router'
 import AuthService from "../services/auth-service";
-import TodosService from "../services/todos-service";
+import TodosService from "../services/todos-adapter";
 
-const authService = new AuthService();
+
+
+const authServiceInstance = AuthService.getInstance();
+
+
 const todosService = new TodosService();
+
 
 const route = useRoute();
 const router = useRouter();
@@ -19,13 +24,13 @@ const createdAt = ref();
 const updatedAt = ref();
 
 const getTodo = async () => { 
-    const todo = await todosService.getTodo(route.params._id)
-   
-    title.value = todo.data.title,
-    content.value = todo.data.content,
-    timeLimit.value = todo.data.timeLimit,
-    createdAt.value = todo.data.createdAt,
-    updatedAt.value = todo.data.updatedAt
+    const todo = await todosService.getTodo(route.params.id)
+  
+    title.value = todo.title,
+    content.value = todo.content,
+    timeLimit.value = todo.timeLimit,
+    createdAt.value = todo.createdAt,
+    updatedAt.value = todo.updatedAt
  
 }
 
@@ -34,10 +39,12 @@ const updateTodo = async () => {
   const todo = {
     title: title.value,
     content: content.value,
-    timeLimit: timeLimit.value
+    timeLimit: timeLimit.value,
+   
   }
 
-  const id = route.params._id
+  const id = route.params.id
+
   await todosService.updateTodo(id, todo);
   isLoading.value = false
   router.push({ name: 'home' });
@@ -75,7 +82,7 @@ onMounted(getTodo)
           <form>
             <div class="mb-2">
               <label for="title">Title</label>
-              <input type="text" id="title" v-model="title" placeholder="Title" class="form-control" />
+              <input type="text" id="title" v-model="title" placeholder="Title" class="form-control" name="title"/>
             </div>
           
             <div class="mb-2">
@@ -85,7 +92,7 @@ onMounted(getTodo)
                 id="content"
                 v-model="content"
                 placeholder="Content"
-                class="form-control" 
+                class="form-control" name="content"
                 required
               ></textarea>
             </div>
@@ -97,7 +104,7 @@ onMounted(getTodo)
                 id="timeLimit"
                 v-model="timeLimit"
                 placeholder="Date Limite"
-                class="form-control"
+                class="form-control" name="timeLimit"
                 required
               />
             </div>
