@@ -1,10 +1,26 @@
+
 import constants from '../constants';
 
+
 class AuthService {
-    url = `${constants.apiUrl}/users`;
+
+	url = `${constants.apiUrl}/users`;
     apiKey = constants.apiKey;
     tokenKey = "jwt-token";
     userIdKey = "user-id";
+
+
+
+// Singleton
+	static instance = null;
+
+	static getInstance(){
+		if(!AuthService.instance){
+			AuthService.instance = new AuthService();
+		}
+		return AuthService.instance;
+	}
+
 
     getUserId() {
         return localStorage.getItem(this.userIdKey);
@@ -66,8 +82,10 @@ class AuthService {
 
 
 
-    async login(email, password) {
-		const endpoint = "loginWithPassword";
+
+
+   async login(email, password){
+        const endpoint = "loginWithPassword";
 
 		try {
 			const response = await fetch(`${this.url}/${endpoint}`, {
@@ -94,9 +112,13 @@ class AuthService {
 		} catch (e) {
 			console.error(e)
 		}
-	}
 
-    async register(email, password) {
+	
+
+    }
+
+
+	async register(email, password) {
 		const endpoint = "signupWithPassword";
 
 		try {
@@ -130,7 +152,10 @@ class AuthService {
 		this.clearUserId();
 	}
 
-
+	
+	
+	
 }
 
 export default AuthService;
+

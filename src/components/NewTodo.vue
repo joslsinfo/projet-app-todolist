@@ -2,18 +2,27 @@
 
 import { ref } from "vue";
 import AuthService from "../services/auth-service";
-import TodosService from "../services/todos-service";
 
-const authService = new AuthService();
+import TodosService from "../services/todos-adapter";
+
+
+// ==========================================
+const authServiceInstance = AuthService.getInstance();
+
+
 const todosService = new TodosService();
 
 
 const title = ref("");
 const content = ref("");
 const done = ref(false);
-const user =ref(authService.getUserId());
+
+const user = ref(authServiceInstance.getUserId());
 const doneAt = ref(null);
 const timeLimit = ref(null);
+
+
+const emit = defineEmits(['closeModal']);
 
 
 
@@ -30,26 +39,19 @@ const createTodo = async () => {
       
     };
 
+
     const newTodo = await todosService.createTodo(todo);
+    
+    emit("closeModal");
+
     console.log(newTodo);
    
+  
 
   
 }
 
 
-
-const onToggleCreateModal = () => {
-    console.log(isCreateModalOpen.value);
-
-    isCreateModalOpen.value = !isCreateModalOpen.value;
-
-      
-};
-
-// const onModalClose = () => {
-//   todo.value = !null;
-// };
 
 </script>
 

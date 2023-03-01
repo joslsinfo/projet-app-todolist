@@ -2,7 +2,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import AuthService from "../services/auth-service";
-const authService = new AuthService();
+
+const authServiceInstance = AuthService.getInstance();
 
 const email = ref("");
 const password = ref("");
@@ -14,7 +15,7 @@ const register = async () => {
 
     if(password.value !== passwordRetype.value) return;
 
-    const user = await authService.register(email.value, password.value);
+    const user = await authServiceInstance.register(email.value, password.value);
    
     // console.log(user);
 

@@ -5,11 +5,11 @@ import AuthService from "./services/auth-service";
 import NavBar from "./components/NavBar.vue";
 
 
-const authService = new AuthService();
+const authServiceInstance  = new AuthService();
 const router = useRouter();
 
 const tryAuth = async () => {
-  const user = await authService.authenticate();
+  const user = await authServiceInstance.authenticate();
 
   if(!user) {
     router.push({ name: "login" });
